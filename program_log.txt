@@ -1,0 +1,8 @@
+Program started.
+Program started.
+Grade calculated.
+Grade calculated.
+Grade calculated.
+Grade calculated.
+Statistics calculated.
+Scores saved to file.
