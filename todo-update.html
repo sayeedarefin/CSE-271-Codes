@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 1% To-Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #D8B5FF, #1EAE98);
+            transition: background 0.5s;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .dark-mode {
+            background: #333;
+            color: #fff;
+        }
+        .todo-app h2 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            background: #f4f4f4;
+            border-radius: 30px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .row input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px;
+        }
+        .row button {
+            border: none;
+            background: #FF5945;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        ul {
+            margin-top: 20px;
+            list-style: none;
+        }
+        ul li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: grab;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+        ul li.checked {
+            text-decoration: line-through;
+            background: #d9d9d9;
+        }
+        ul li span {
+            background: #FF5945;
+            color: #fff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .progress-bar {
+            height: 8px;
+            width: 100%;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: #6C63FF;
+            transition: width 0.5s ease;
+        }
+        .dark-mode-toggle {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="todo-app">
+            <h2>To-Do List 
+                <span class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</span>
+            </h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task...">
+                <button onclick="addTask()">+</button>
+            </div>
+            <ul id="list-container"></ul>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputBox = document.getElementById("input-box");
+        const listContainer = document.getElementById("list-container");
+        const container = document.getElementById("container");
+        const progressBar = document.getElementById("progress");
+
+        function addTask() {
+            if (inputBox.value.trim() === '') return;
+            
+            const li = document.createElement("li");
+            li.innerHTML = `<span>${inputBox.value}</span>
+                            <span onclick="deleteTask(this)">🗑️</span>`;
+            listContainer.appendChild(li);
+            inputBox.value = '';
+            updateProgress();
+            saveData();
+        }
+
+        function deleteTask(element) {
+            element.parentElement.remove();
+            updateProgress();
+            saveData();
+        }
+
+        listContainer.addEventListener("click", function(e) {
+            if (e.target.tagName === "LI") {
+                e.target.classList.toggle("checked");
+                updateProgress();
+                saveData();
+            }
+        });
+
+        function updateProgress() {
+            const tasks = listContainer.querySelectorAll("li");
+            const checkedTasks = listContainer.querySelectorAll("li.checked");
+            const progress = tasks.length ? (checkedTasks.length / tasks.length) * 100 : 0;
+            progressBar.style.width = progress + "%";
+        }
+
+        function toggleDarkMode() {
+            container.classList.toggle("dark-mode");
+        }
+
+        function saveData() {
+            localStorage.setItem("tasks", listContainer.innerHTML);
+        }
+
+        function showTask() {
+            listContainer.innerHTML = localStorage.getItem("tasks") || "";
+            updateProgress();
+        }
+
+        showTask();
+    </script>
+</body>
+</html>
