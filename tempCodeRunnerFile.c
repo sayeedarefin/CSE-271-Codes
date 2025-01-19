@@ -1,20 +1,16 @@
-#include <stdio.h>
+#include<stdio.h>
 
-int main() {
-    int arr[5] = {10, 2, 31, 4, 9};
-    int highestIndex = 0, lowestIndex = 0;
+// int main(){
+//     int a,b,sum,sub,mul,div;
+//     printf("Please enter two valid numbers");
+//     scanf("%d%d", &a, &b);
 
-    for (int i = 1; i < 5; i++) {
-        if (arr[i] > arr[highestIndex]) {
-            highestIndex = i;
-        }
-        if (arr[i] < arr[lowestIndex]) {
-            lowestIndex = i;
-        }
-    }
-
-    printf("Highest: index = %d, val = %d\n", highestIndex, arr[highestIndex]);
-    printf("Lowest: index = %d, val = %d\n", lowestIndex, arr[lowestIndex]);
-
-    return 0;
-}
+//     sum= a+b;
+//     sub= a-b;
+//     mul= a*b;
+//     div= a/b;
+//     printf("Sum is: \n",sum);
+//     printf("Sub is: \n" ,sub);
+//     printf("Mul is: \n" ,mul);
+//     printf("Div is: \n" ,div);
+// }

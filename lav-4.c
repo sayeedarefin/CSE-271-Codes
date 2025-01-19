@@ -1,46 +1,46 @@
-// #include<stdio.h>
-// int main(){
-//     int arr[5]= {10,2,31,4,9};
-//     int highestIndex=0, lowestIndex=0;
-//     int i;
+#include<stdio.h>
+int main(){
+    int arr[5]= {10,2,31,4,9};
+    int highestIndex=0, lowestIndex=0;
+    int i;
 
-//     for (int i = 1; i < 5; i++)
-//     {
-//         if (arr[i] > arr[highestIndex])
-//         {
-//             highestIndex=i;
-//         }
-//         if (arr[i] < arr[lowestIndex])
-//         {
-//             lowestIndex=i;
-//         }
-//     }
-//     printf("Highest Index : %d, index value: %d\n", highestIndex, arr[highestIndex]);
-//     printf("Lowest Index : %d, index value: %d\n", lowestIndex, arr[lowestIndex]);
+    for (int i = 1; i < 5; i++)
+    {
+        if (arr[i] > arr[highestIndex])
+        {
+            highestIndex=i;
+        }
+        if (arr[i] < arr[lowestIndex])
+        {
+            lowestIndex=i;
+        }
+    }
+    printf("Highest Index : %d, index value: %d\n", highestIndex, arr[highestIndex]);
+    printf("Lowest Index : %d, index value: %d\n", lowestIndex, arr[lowestIndex]);
 
-//     return 0;
-// }
+    return 0;
+}
 
 
-// #include <stdio.h>
-// #include <string.h>
+#include <stdio.h>
+#include <string.h>
 
-// int main() {
-//     char Arr1[] = "CSE - 272";
-//     char Arr2[50];
-//     int j = 0,length;
+int main() {
+    char Arr1[] = "CSE - 272";
+    char Arr2[50];
+    int j = 0,length;
 
-//     length= strlen(Arr1);
-//     for (int i = 0; i < length; i++) {
-//         if (Arr1[i] != ' ') {
-//             Arr2[j++] = Arr1[i];
-//         }
-//     }
-//     Arr2[j] = '\0'; 
+    length= strlen(Arr1);
+    for (int i = 0; i < length; i++) {
+        if (Arr1[i] != ' ') {
+            Arr2[j++] = Arr1[i];
+        }
+    }
+    Arr2[j] = '\0'; 
 
-//     printf("Arr2: %s\n", Arr2); 
-//     return 0;
-// }
+    printf("Arr2: %s\n", Arr2); 
+    return 0;
+}
 
 
 
